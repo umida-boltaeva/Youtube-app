@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Tabs, Tab, Box, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import VideoPlayer from "./VideoPlayer";
 import SearchList from "./SearchList";
 
 const styles = {

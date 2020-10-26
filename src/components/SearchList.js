@@ -3,6 +3,7 @@ import { TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
+import VideoItem from "./VideoItem";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -43,23 +44,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SearchList = () => {
+const SearchList = ({ videos, handleVideoSelect }) => {
   const classes = useStyles();
 
-  return (
-    <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <SearchIcon />
-      </div>
-      <InputBase
-        placeholder="Search…"
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
-        inputProps={{ "aria-label": "search" }}
+  const renderedVideos = videos.map((video) => {
+    return (
+      <VideoItem
+        key={video.id.videoId}
+        video={video}
+        handleVideoSelect={handleVideoSelect}
       />
-    </div>
+    );
+  });
+
+  return (
+    <>
+      <div className={classes.search}>
+        <div className={classes.searchIcon}>
+          <SearchIcon />
+        </div>
+        <InputBase
+          placeholder="Search…"
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{ "aria-label": "search" }}
+        />
+      </div>
+      <div className="ui relaxed divided list">{renderedVideos}</div>
+    </>
   );
 };
 
